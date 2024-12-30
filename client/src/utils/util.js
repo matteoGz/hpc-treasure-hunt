@@ -19,7 +19,7 @@ function isAuthenticated() {
 function getBackendUrl(){
     if(window.location.origin.includes('localhost')){
         return "http://localhost:8080/api";
-    } else return "/api";
+    } else return "https://hpc-treasure-hunt-api/api";
 }
 
 export const util = {
