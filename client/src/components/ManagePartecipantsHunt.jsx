@@ -18,6 +18,7 @@ import { IoSaveOutline } from 'react-icons/io5';
 import { RxCross2 } from "react-icons/rx";
 import { CgProfile } from 'react-icons/cg';
 import { updateHunt } from '../services/huntServices';
+import { util } from '../utils/util';
 
 const ManagePartecipantsHunt = ({ open, onClose, partecipants, huntId }) => {
     const [usersList, setUsersList] = useState([]);
@@ -25,7 +26,7 @@ const ManagePartecipantsHunt = ({ open, onClose, partecipants, huntId }) => {
     
     useEffect(() => {
         setSelectedpartecipants(partecipants ? partecipants : []);
-        axios('http://localhost:8080/api/users')
+        axios(util.getBackendUrl()+'/users')
         .then(response => {
             setUsersList(response.data);
         })

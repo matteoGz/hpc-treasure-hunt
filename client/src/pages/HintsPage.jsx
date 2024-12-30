@@ -8,6 +8,7 @@ import { SiAdblock } from "react-icons/si";
 import { IoAddCircleOutline, IoClose, IoQrCodeOutline } from "react-icons/io5";
 import CreateHintForm from "../components/CreateHintForm";
 import QRCodeGenerator from "../components/QrCodeGenerator";
+import { util } from "../utils/util";
 
 export default function HintsPage() {
   const [hunt, setHunt] = useState(null);
@@ -29,7 +30,7 @@ export default function HintsPage() {
       setIsLoading(true);
       setError(null);
       try {
-        axios('http://localhost:8080/api/users')
+        axios(util.getBackendUrl()+'/users')
           .then(async (response) => {
             setUsers(response.data);
             if(huntId){

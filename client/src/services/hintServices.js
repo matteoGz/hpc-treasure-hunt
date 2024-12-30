@@ -1,6 +1,7 @@
+import { util } from '../utils/util';
 import axios from './axios';
 
-const BASE_URL = 'http://localhost:8080/api/hints'; // Replace with your actual API endpoint
+const BASE_URL = util.getBackendUrl() + '/hints';
 
 const getHintsByHuntId = async (huntId) => {
     try {

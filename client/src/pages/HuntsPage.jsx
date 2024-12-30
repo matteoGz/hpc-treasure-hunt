@@ -7,6 +7,7 @@ import CreateHuntForm from "../components/CreateHuntForm";
 import axios from "../services/axios";
 import { IoEnterOutline } from "react-icons/io5";
 import JoinHuntForm from "../components/JoinHuntForm";
+import { util } from "../utils/util";
 
 export default function HuntsPage() {
   const [hunts, setHunts] = useState([]);
@@ -24,7 +25,7 @@ export default function HuntsPage() {
       setIsLoading(true);
       setError(null);
       try {
-        axios('http://localhost:8080/api/users')
+        axios(util.getBackendUrl()+'/users')
           .then(async (response) => {
             setUsers(response.data);
             const data = await getAllHunts();

@@ -13,9 +13,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 const cors = require('cors'); 
 app.use(cors({
-    origin: 'http://localhost:5173', // Replace with your frontend's URL
-    methods: 'GET, POST, PUT, PATCH, DELETE', // Specify allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
+    origin: process.env.FRONTENDURL || 'http://localhost:5173',
+    methods: 'GET, POST, PUT, PATCH, DELETE',
+    allowedHeaders: ['Content-Type', 'Authorization'],
 })); 
 
 const prefix = "/api";

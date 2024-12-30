@@ -6,6 +6,7 @@ import { IoMdLogIn } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { ImProfile } from "react-icons/im";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+import { util } from "../utils/util";
 
 export default function Login() {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ export default function Login() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/api/auth/login', { username, password });
+            const response = await axios.post(util.getBackendUrl()+'/auth/login', { username, password });
             if(response?.data?.token && response?.data?.uid){
                 console.log(response.data.token, response.data.uid);
                 await sessionStorage.setItem('username', username);

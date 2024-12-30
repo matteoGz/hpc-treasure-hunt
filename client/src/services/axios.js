@@ -1,10 +1,11 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { util } from '../utils/util';
 
 
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: util.getBackendUrl(),
   timeout: 25000,
   headers: {
     'Content-Type': 'application/json'

@@ -6,6 +6,7 @@ import { MdVisibility } from "react-icons/md";
 import { MdVisibilityOff } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { util } from '../utils/util';
 
 export default function Registration() {
     const navigate = useNavigate();
@@ -17,10 +18,10 @@ export default function Registration() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/api/auth/register', { username, email, password });
+            const response = await axios.post(util.getBackendUrl()+'/auth/register', { username, email, password });
             console.log('Registration successful:', response.data);
             try {
-                const response = await axios.post('http://localhost:8080/api/auth/login', { username, password });
+                const response = await axios.post(util.getBackendUrl()+'/auth/login', { username, password });
                 if(response?.data?.token && response?.data?.uid){
                     console.log(response.data.token, response.data.uid);
                     await sessionStorage.setItem('username', username )

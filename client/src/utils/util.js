@@ -16,6 +16,13 @@ function isAuthenticated() {
     }
 }
 
+function getBackendUrl(){
+    if(window.location.origin.includes('localhost')){
+        return "http://localhost:8080/api";
+    } else return "/api";
+}
+
 export const util = {
-    isAuthenticated
+    isAuthenticated,
+    getBackendUrl
 }

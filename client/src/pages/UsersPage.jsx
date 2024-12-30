@@ -2,13 +2,14 @@ import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, 
 import axios from "../services/axios";
 import { useEffect, useState } from "react"
 import { IoTrash } from "react-icons/io5";
+import { util } from "../utils/util";
 
 export default function UsersPage() {
     const [users, setUsers] = useState([]);
     const userLogged = sessionStorage.getItem('username');
 
     useEffect(() => {
-      axios('http://localhost:8080/api/users')
+      axios(util.getBackendUrl()+'/users')
         .then(response => {
           setUsers(response.data);
         })
@@ -19,7 +20,7 @@ export default function UsersPage() {
   
     const handleDeleteUser = async (userId) => {
         try {
-            await axios.delete(`http://localhost:8080/api/users/${userId}`);
+            await axios.delete(util.getBackendUrl+`/users/${userId}`);
             setUsers(users.filter(user => user._id !== userId));
         } catch (error) {
             console.error('Error deleting user: ', error);
