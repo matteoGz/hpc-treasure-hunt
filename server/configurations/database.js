@@ -1,4 +1,3 @@
-require('dotenv').config();
 const mongoose = require('mongoose');
 const logger = require('./logger');
 const grid = require('gridfs-stream');
