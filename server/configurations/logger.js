@@ -12,6 +12,7 @@ const loggerConfig = {
   format: formatLog,
   transports: [
     new transports.Console(),
+    /* NOT FOR PRODUCTION ON VERCEL
     new dailyRotateFile({
         filename: 'logs/application_%DATE%.log',
         datePattern: 'DD-MM-YYYY',
@@ -19,6 +20,7 @@ const loggerConfig = {
         maxSize: '20m',
         maxFiles: '14d'
     })
+    */
   ]
 };
 
