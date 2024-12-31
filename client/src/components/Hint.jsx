@@ -14,7 +14,8 @@ const Hint = ({ hint, usersList, userLogged }) => {
             return;
         }
         try {
-            const link = window.location.href.split("/").length > 4 ? (window.location.href) : (window.location.href+"/"+hint.number); 
+            console.log(window.location.href.split("/"))
+            const link = window.location.href.split("/").length === 6 ? (window.location.href) : (window.location.href+"/"+hint.number); 
             await navigator.clipboard.writeText(link);
         } catch (err) {
             console.error('Failed to copy hint link:', err);

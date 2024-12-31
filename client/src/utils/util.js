@@ -22,7 +22,14 @@ function getBackendUrl(){
     } else return "https://hpc-treasure-hunt-api.vercel.app/api";
 }
 
+function extractInternalUrl(url){
+    const firstSlashAfterDomain = url.indexOf('/', url.indexOf('://') + 3);
+    const urlToNavigate = url.substring(firstSlashAfterDomain);
+    return urlToNavigate;
+}
+
 export const util = {
     isAuthenticated,
-    getBackendUrl
+    getBackendUrl,
+    extractInternalUrl
 }
