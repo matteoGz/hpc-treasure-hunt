@@ -3,8 +3,10 @@ import { useEffect, useState } from 'react';
 import { util } from '../utils/util';
 import { GiPirateSkull } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg"
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+    const navigate = useNavigate();
     const [username, setUsername] = useState(undefined);
 
     useEffect(() => {
@@ -27,8 +29,8 @@ export default function Header() {
                     </>
                 ) : (
                     <div>
-                        <Button color="inherit" href="/login">Login</Button>
-                        <Button color="inherit" href="/registration">Registration</Button>
+                        <Button color="inherit" onClick={() => navigate('/login')}>Login</Button>
+                        <Button color="inherit" onClick={() => navigate('/registration')}>Registration</Button>
                     </div>
                 )}
             </Toolbar>
