@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const CreateHuntForm = ({ open, handleClose, onSubmit }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const creator = sessionStorage.getItem('uid');
+  const creator = sessionStorage.getItem('uid') ? sessionStorage.getItem('uid') : 'pirata';
   const partecipants = [creator];
   const [location, setLocation] = useState('');
 

@@ -25,7 +25,7 @@ export default function Header() {
                 setIsAuth(true);
                 sessionStorage.setItem('username', 'pirata');
                 setUsername('pirata');
-                alert('Username missing in sessionStorage...Consider redirecting to login, set default pirata');
+                console.warn('Username missing in sessionStorage...Consider redirecting to login, set default pirata');
             }
         } else setIsAuth(false);
     }, []);

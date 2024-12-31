@@ -53,6 +53,7 @@ export default function HintsPage() {
       } catch (err) {
         console.error('Error loading hunt or hints:', err);
         setError(err.response?.message ? err.response.message : 'Generic error');
+        setIsLoading(false);
       } finally {
         setIsLoading(false);
       }
@@ -78,16 +79,16 @@ export default function HintsPage() {
     <Box marginTop={1}>
     { huntId ? 
       <>  
-      {isLoading && <CircularProgress />}
       {error && <p>Error loading hunt or hints: {error}</p>}
-      {hintNumber ?
-        <Hint hint={hintDetails} userLogged={userLogged} usersList={users} />
-      : users.filter(user => user.username === userLogged)[0]?.role !== 'admin' ?
+      {isLoading ? <CircularProgress />
+       : hintNumber ?
+          <Hint hint={hintDetails} userLogged={userLogged} usersList={users} />
+       : users.filter(user => user.username === userLogged)[0]?.role !== 'admin' ?
           <div style={{textAlign: "center"}}>
           <SiAdblock color="#c3170C" size={48} />
           <Typography variant="h5">You don&#39;t have the necessary permissions to see all hints ;-&#41;</Typography> 
           </div>
-        : hunt && (
+       : hunt && (
           <>
           <Button
             color="success"
