@@ -1,5 +1,5 @@
 import { AppBar, Toolbar, Typography, Button, MenuItem, Menu } from '@mui/material';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { util } from '../utils/util';
 import { GiPirateSkull } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg"
@@ -11,8 +11,8 @@ export default function Header() {
     const [username, setUsername] = useState(undefined);
     const [isAuth, setIsAuth] = useState(false);
 
-    const anchorEl = useRef(null);
-    const open = Boolean(anchorEl.current);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
 
     useEffect(() => {
         const isUserAuthenticated = util.isAuthenticated();
@@ -31,17 +31,18 @@ export default function Header() {
     }, []);
 
     const handleLogout = async () => {
+        await handleClose();
         await sessionStorage.setItem('username', undefined);
         await Cookies.remove('authToken');
         window.location.reload();
     };
 
-    const handleMenuOpen = (event) => {
-        anchorEl.current = event.currentTarget;
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
     };
     
-    const handleMenuClose = () => {
-        anchorEl.current = null;
+    const handleClose = () => {
+        setAnchorEl(null);
     };
 
     return (
@@ -54,13 +55,13 @@ export default function Header() {
                 { isAuth && username ? (
                     <>
                     <Typography variant="body1" marginRight={1}>Benvenuto, {username}!</Typography>
-                    <CgProfile size={32} aria-controls="logout-menu" aria-haspopup="true" onClick={handleMenuOpen} />
+                    <CgProfile size={32} aria-controls="logout-menu" aria-haspopup="true" onClick={handleClick} />
                     <Menu
                         id="logout-menu"
-                        anchorEl={anchorEl.current}
+                        keepMounted
+                        anchorEl={anchorEl}
                         open={open}
-                        onClose={handleMenuClose}
-                        MenuListProps={{ 'aria-labelledby': 'logout-menu' }}
+                        onClose={handleClose}
                     >
                         <MenuItem onClick={handleLogout}>Logout</MenuItem>
                     </Menu>
