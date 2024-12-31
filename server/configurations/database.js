@@ -1,3 +1,6 @@
+// init required in local enviroment
+//require('dotenv').config();
+// end required
 const mongoose = require('mongoose');
 const logger = require('./logger');
 const grid = require('gridfs-stream');
