@@ -1,5 +1,4 @@
 import { Box, Button, Typography } from "@mui/material";
-import ErrorIcon from '@mui/icons-material/Error';
 import { IoHome } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import notFoundGif from "../assets/notfound.webp";
@@ -16,7 +15,6 @@ export default function NotfoundPage() {
         marginTop:1
       }}
     >
-      <ErrorIcon sx={{ fontSize: 100, color: 'error.main' }} />
       <Typography variant="h4" component="h1" gutterBottom>
         ERROR 404
       </Typography>
