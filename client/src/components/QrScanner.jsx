@@ -24,6 +24,7 @@ export default function QrScanner({ delay = 300 }) {
         delay={delay}
         onError={handleError}
         onResult={handleScan}
+        constraints={{ facingMode: { ideal: 'environment' } }}
         style={{ width: '100%' }}
       />
       <a href={result.text}>{result.text}</a>
