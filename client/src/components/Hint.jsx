@@ -47,14 +47,16 @@ const Hint = ({ hint, usersList, userLogged }) => {
                 <Typography color="text.primary">
                     {hint.description}
                 </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <IconButton onClick={copyHintLink} disabled={usersList.filter(user => user.username === userLogged)[0]?.role !== 'admin'}>
-                        <BsCopy color='#3f51b5'/>
-                    </IconButton>
-                    <IconButton onClick={eliminationHint} disabled={usersList.filter(user => user.username === userLogged)[0]?.role !== 'admin'}>
-                        <IoTrash color='#c3170C' />
-                    </IconButton>
-                </Box>
+                { usersList?.filter(user => user?.username === userLogged)[0]?.role === 'admin' &&
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                        <IconButton onClick={copyHintLink} disabled={usersList.filter(user => user.username === userLogged)[0]?.role !== 'admin'}>
+                            <BsCopy color='#3f51b5'/>
+                        </IconButton>
+                        <IconButton onClick={eliminationHint} disabled={usersList.filter(user => user.username === userLogged)[0]?.role !== 'admin'}>
+                            <IoTrash color='#c3170C' />
+                        </IconButton>
+                    </Box>
+                }
             </CardContent>
         </Card>
     );
